@@ -11,21 +11,25 @@ describe <%= controller_class_name %>Controller, "#route_for" do
   end
   
   it "should map { :controller => '<%= name.pluralize %>', :action => 'show', :id => 1 } to /<%= name.pluralize %>/1" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "show", :id => 1).should == "/<%= name.pluralize %>/1"
+    route_for(:controller => "<%= name.pluralize %>", :action => "show", :id => "1").should == "/<%= name.pluralize %>/1"
   end
   
   it "should map { :controller => '<%= name.pluralize %>', :action => 'edit', :id => 1 } to /<%= name.pluralize %>/1<%= resource_edit_path %>" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "edit", :id => 1).should == "/<%= name.pluralize %>/1<%= resource_edit_path %>"
+    route_for(:controller => "<%= name.pluralize %>", :action => "edit", :id => "1").should == "/<%= name.pluralize %>/1<%= resource_edit_path %>"
   end
   
   it "should map { :controller => '<%= name.pluralize %>', :action => 'update', :id => 1} to /<%= name.pluralize %>/1" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "update", :id => 1).should == "/<%= name.pluralize %>/1"
+    route_for(:controller => "<%= name.pluralize %>", :action => "update", :id => "1").should == { :path => "/<%= name.pluralize %>/1", :method => :put}
   end
   
   it "should map { :controller => '<%= name.pluralize %>', :action => 'destroy', :id => 1} to /<%= name.pluralize %>/1" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "destroy", :id => 1).should == "/<%= name.pluralize %>/1"
+    route_for(:controller => "<%= name.pluralize %>", :action => "destroy", :id => "1").should == { :path => "/<%= name.pluralize %>/1", :method => :delete}
   end
-  
+
+  it "should map { :controller => '<%= name.pluralize %>', :action => 'create'} to /<%= name.pluralize %>" do
+    route_for(:controller => "<%= name.pluralize %>", :action => "create").should == { :path => "/<%= name.pluralize %>", :method => :post}
+  end
+
 end
 
 describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize %>" do
