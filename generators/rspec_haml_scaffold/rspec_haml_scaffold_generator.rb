@@ -110,7 +110,7 @@ class RspecHamlScaffoldGenerator < Rails::Generator::NamedBase
       end
 
       #m.route_resources controller_file_name
-      route_resources name
+      route_resources name.downcase
 
     end
   end
